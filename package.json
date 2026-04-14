@@ -1,0 +1,30 @@
+{
+  "name": "newsletter-react-ui",
+  "private": true,
+  "version": "1.0.0",
+  "description": "React-only UI for building and printing newsletter pages.",
+  "type": "module",
+  "scripts": {
+    "clean": "rm -rf dist .parcel-cache",
+    "dev": "parcel serve index.html --host 127.0.0.1 --port 5173",
+    "typecheck": "tsc --noEmit",
+    "build": "npm run clean && tsc && parcel build index.html --dist-dir dist --public-url ./",
+    "check": "npm run typecheck && npm run build",
+    "preview": "python3 -m http.server 4173 --bind 127.0.0.1 --directory dist",
+    "start": "parcel serve index.html --host 127.0.0.1 --port 5173"
+  },
+  "dependencies": {
+    "lucide-react": "^0.487.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "parcel": "^2.15.4",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.5.3"
+  }
+}
