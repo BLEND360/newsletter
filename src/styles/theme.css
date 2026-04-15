@@ -185,31 +185,9 @@
   page-break-inside: avoid;
 }
 
-:root {
-  --sheet-width: 210mm;
-  --sheet-height: 297mm;
-  --base-sheet-width: 210mm;
-  --base-sheet-height: 297mm;
-  --sheet-scale: 1;
-}
-
 .print-route .print-page {
-  width: var(--sheet-width);
-  height: var(--sheet-height);
-  overflow: hidden;
-}
-
-.print-route .print-page-scaler {
-  width: var(--base-sheet-width);
-  height: var(--base-sheet-height);
-  transform: scale(calc(var(--sheet-scale) * var(--page-fit-scale, 1)));
-  transform-origin: top left;
-}
-
-.print-route .print-page .newsletter-sheet {
-  width: var(--base-sheet-width);
-  min-height: var(--base-sheet-height);
-  height: auto;
+  width: 100%;
+  overflow: visible;
 }
 
 .print-route .print-two-column {
@@ -249,33 +227,8 @@
 }
 
 @media print {
-  @page page-a1 {
-    size: A1 portrait;
-    margin: 0;
-  }
-
-  @page page-a2 {
-    size: A2 portrait;
-    margin: 0;
-  }
-
-  @page page-a3 {
-    size: A3 portrait;
-    margin: 0;
-  }
-
-  @page page-a4 {
-    size: A4 portrait;
-    margin: 0;
-  }
-
-  @page page-a5 {
-    size: A5 portrait;
-    margin: 0;
-  }
-
-  @page page-a6 {
-    size: A6 portrait;
+  @page {
+    size: auto;
     margin: 0;
   }
 
@@ -298,30 +251,6 @@
     display: none !important;
   }
 
-  .print-route.print-size-a1 .print-page {
-    page: page-a1;
-  }
-
-  .print-route.print-size-a2 .print-page {
-    page: page-a2;
-  }
-
-  .print-route.print-size-a3 .print-page {
-    page: page-a3;
-  }
-
-  .print-route.print-size-a4 .print-page {
-    page: page-a4;
-  }
-
-  .print-route.print-size-a5 .print-page {
-    page: page-a5;
-  }
-
-  .print-route.print-size-a6 .print-page {
-    page: page-a6;
-  }
-
   .print-stack {
     max-width: none;
     gap: 0;
@@ -331,9 +260,9 @@
     break-after: page;
     page-break-after: always;
     margin: 0;
-    width: var(--sheet-width);
-    height: var(--sheet-height);
-    overflow: hidden;
+    width: 100%;
+    height: auto;
+    overflow: visible;
   }
 
   .print-page:last-child {
