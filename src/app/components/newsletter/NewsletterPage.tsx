@@ -57,12 +57,12 @@ export function NewsletterPage({
 
         {page.columns ? (
           <div className={`grid gap-7 ${mode === 'print' ? 'print-two-column' : ''} lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]`}>
-            <SectionList sections={page.columns.left} mode={mode} />
-            <SectionList sections={page.columns.right} mode={mode} />
+            <SectionList sections={page.columns.left} mode={mode} pageId={page.id} column="left" />
+            <SectionList sections={page.columns.right} mode={mode} pageId={page.id} column="right" />
           </div>
         ) : null}
 
-        {page.sections?.length ? <SectionList sections={page.sections} mode={mode} /> : null}
+        {page.sections?.length ? <SectionList sections={page.sections} mode={mode} pageId={page.id} /> : null}
       </main>
 
       <NewsletterFooter preparedBy={preparedBy} rightText={page.footerRight} />
@@ -71,28 +71,63 @@ export function NewsletterPage({
 }
 
 function HeroSection({ page, mode }: { page: NewsletterPageContent; mode: 'screen' | 'print' }) {
+  const isAiReport = page.id === 'ai-world-report';
+
   return (
     <section className="newsletter-hero avoid-page-break">
       <BadgePill tone={page.hero.badge.tone} label={page.hero.badge.label} />
-      <h2 className={`mt-4 mb-4 text-2xl leading-tight text-slate-950 sm:text-3xl ${mode === 'screen' ? 'lg:whitespace-nowrap' : ''}`}>
+      <h2
+        className={`mt-4 mb-4 text-2xl leading-tight text-slate-950 sm:text-3xl ${
+          mode === 'screen' ? (isAiReport ? 'max-w-[24ch]' : 'lg:whitespace-nowrap') : ''
+        }`}
+      >
         {page.hero.title}
       </h2>
-      <p className={`text-base leading-7 text-slate-600 ${mode === 'screen' ? 'lg:whitespace-nowrap' : ''}`}>{page.hero.subtitle}</p>
+      <p
+        className={`text-base leading-7 text-slate-600 ${
+          mode === 'screen' ? (isAiReport ? 'max-w-[90ch]' : 'lg:whitespace-nowrap') : ''
+        }`}
+      >
+        {page.hero.subtitle}
+      </p>
     </section>
   );
 }
 
-function SectionList({ sections, mode }: { sections: NewsletterSection[]; mode: 'screen' | 'print' }) {
+function SectionList({
+  sections,
+  mode,
+  pageId,
+  column,
+}: {
+  sections: NewsletterSection[];
+  mode: 'screen' | 'print';
+  pageId: string;
+  column?: 'left' | 'right';
+}) {
   return (
     <div className="space-y-5">
       {sections.map((section, index) => (
-        <NewsletterSectionView key={`${section.type}-${index}`} section={section} mode={mode} />
+        <NewsletterSectionView key={`${section.type}-${index}`} section={section} mode={mode} pageId={pageId} column={column} />
       ))}
     </div>
   );
 }
 
-function NewsletterSectionView({ section, mode }: { section: NewsletterSection; mode: 'screen' | 'print' }) {
+function NewsletterSectionView({
+  section,
+  mode,
+  pageId,
+  column,
+}: {
+  section: NewsletterSection;
+  mode: 'screen' | 'print';
+  pageId: string;
+  column?: 'left' | 'right';
+}) {
+  const isAiReportCards = pageId === 'ai-world-report' && mode === 'screen' && section.type === 'cards';
+  const isAiReportRightCards = isAiReportCards && column === 'right';
+
   switch (section.type) {
     case 'image':
       return (
@@ -108,11 +143,22 @@ function NewsletterSectionView({ section, mode }: { section: NewsletterSection; 
       );
     case 'cards':
       return (
-        <>
-          {section.cards.map((card) => (
-            <NewsletterCardView key={card.title} card={card} />
-          ))}
-        </>
+        <div className="space-y-4">
+          {section.cards.map((card, index) => {
+            const cardToneVariantClass = isAiReportCards ? `ai-report-card ai-report-card--${index % 4}` : '';
+            const cardClassName = [isAiReportRightCards ? 'ai-report-right-card' : '', cardToneVariantClass].filter(Boolean).join(' ');
+
+            return (
+            <NewsletterCardView
+              key={card.title}
+              card={card}
+              cardClassName={cardClassName || undefined}
+              contentClassName={isAiReportRightCards ? 'flex min-h-[11.5rem] flex-col' : undefined}
+              linkClassName={isAiReportRightCards ? 'mt-auto pt-4' : 'mt-4'}
+            />
+            );
+          })}
+        </div>
       );
     case 'stats':
       return (
@@ -205,11 +251,27 @@ function NewsletterSectionView({ section, mode }: { section: NewsletterSection; 
   }
 }
 
-function NewsletterCardView({ card }: { card: NewsletterCard }) {
+function NewsletterCardView({
+  card,
+  cardClassName,
+  contentClassName,
+  linkClassName = 'mt-4',
+}: {
+  card: NewsletterCard;
+  cardClassName?: string;
+  contentClassName?: string;
+  linkClassName?: string;
+}) {
   const external = card.link ? isExternalHref(card.link.href) : false;
 
   return (
-    <AccentCard tone={card.tone} title={card.title} icon={card.icon ? icons[card.icon] : undefined}>
+    <AccentCard
+      tone={card.tone}
+      title={card.title}
+      icon={card.icon ? icons[card.icon] : undefined}
+      className={cardClassName}
+      contentClassName={contentClassName}
+    >
       {card.body ? <p className={card.link || card.bullets ? 'mb-4 max-w-prose leading-7' : 'max-w-prose leading-7'}>{card.body}</p> : null}
       {card.bullets ? (
         <ul className="space-y-3">
@@ -224,7 +286,7 @@ function NewsletterCardView({ card }: { card: NewsletterCard }) {
       {card.link ? (
         <a
           href={card.link.href}
-          className="mt-4 inline-flex items-center gap-2 font-medium text-slate-900 hover:underline"
+          className={`${linkClassName} inline-flex items-center gap-2 font-medium text-slate-900 hover:underline`}
           target={external ? '_blank' : undefined}
           rel={external ? 'noreferrer noopener' : undefined}
         >

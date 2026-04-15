@@ -9,6 +9,7 @@ export function AccentCard({
   icon,
   right,
   className,
+  contentClassName,
 }: {
   tone: Tone;
   title: string;
@@ -16,6 +17,7 @@ export function AccentCard({
   icon?: ReactNode;
   right?: ReactNode;
   className?: string;
+  contentClassName?: string;
 }) {
   const t = toneClasses(tone);
   return (
@@ -26,7 +28,7 @@ export function AccentCard({
             {icon ? <div className="mt-0.5 shrink-0">{icon}</div> : null}
             <div className="min-w-0 flex-1">
               <h3 className="mb-3 text-lg leading-tight text-slate-950 sm:text-xl">{title}</h3>
-              <div className="text-sm leading-6 text-slate-700">{children}</div>
+              <div className={`text-sm leading-6 text-slate-700 ${contentClassName ?? ''}`}>{children}</div>
             </div>
           </div>
         </div>

@@ -216,6 +216,38 @@
   grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
 }
 
+@media screen {
+  .ai-report-card {
+    background-image: linear-gradient(150deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.82));
+  }
+
+  .ai-report-card.ai-report-card--0 {
+    background-image: linear-gradient(145deg, rgba(236, 253, 245, 0.9), rgba(255, 255, 255, 0.9));
+  }
+
+  .ai-report-card.ai-report-card--1 {
+    background-image: linear-gradient(145deg, rgba(236, 254, 255, 0.9), rgba(255, 255, 255, 0.9));
+  }
+
+  .ai-report-card.ai-report-card--2 {
+    background-image: linear-gradient(145deg, rgba(255, 251, 235, 0.92), rgba(255, 255, 255, 0.9));
+  }
+
+  .ai-report-card.ai-report-card--3 {
+    background-image: linear-gradient(145deg, rgba(238, 242, 255, 0.92), rgba(255, 255, 255, 0.9));
+  }
+
+  .ai-report-right-card {
+    border-left-width: 5px;
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+  }
+
+  .ai-report-right-card h3 {
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+}
+
 @media print {
   @page page-a1 {
     size: A1 portrait;

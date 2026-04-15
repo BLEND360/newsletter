@@ -147,14 +147,34 @@ export const newsletter: NewsletterIssue = {
             type: 'cards',
             cards: [
               {
-                title: '🛠️ OpenAI ships GPT-5.4 for coding and computer use',
+                title: '🛠️ OpenAI launches GPT-5.4 for production-grade agent workflows',
                 body:
-                  'On March 5, 2026, OpenAI released GPT-5.4 across ChatGPT, the API, and Codex with stronger coding, native computer use, tool search, and support for longer-running workflows.',
+                  'On March 5, 2026, OpenAI released GPT-5.4 across ChatGPT, API, and Codex, combining stronger reasoning, native computer use, and 1M-token context to execute long, tool-rich workflows with higher reliability and lower token overhead.',
                 tone: 'amber',
                 icon: 'clock',
                 link: {
                   label: 'Read more',
                   href: 'https://openai.com/index/introducing-gpt-5-4/',
+                },
+              },
+              {
+                title: '🤖 Robots are leaving scripted behavior behind',
+                body:
+                  'At Davos 2026, robotics leaders confirmed a pivot to context-aware physical AI, where systems reason about intent, not just preprogrammed steps. With NVIDIA’s GR00T and Cosmos plus lower-cost humanoid deployments, unstructured real-world automation is moving from lab demo to market reality.',
+                tone: 'amber',
+                link: {
+                  label: 'Read more',
+                  href: 'https://blogs.nvidia.com/blog/national-robotics-week-2026/',
+                },
+              },
+              {
+                title: '💸 The Great AI Price Crash: capability up, cost down 37x',
+                body:
+                  'In roughly a year, inference economics flipped from scarcity to abundance: workloads that once cost $100 per million tokens are now under $3. With low-cost, long-context models surging, competitive advantage is shifting from model access to orchestration quality.',
+                tone: 'cyan',
+                link: {
+                  label: 'Read more',
+                  href: 'https://medium.com/@sanjeevpatel3007/best-ai-models-march-april-2026-every-major-release-ranked-5546e2590e8b',
                 },
               },
             ],
@@ -165,9 +185,9 @@ export const newsletter: NewsletterIssue = {
             type: 'cards',
             cards: [
               {
-                title: '🔐 Anthropic launches Project Glasswing',
+                title: '🔐 Anthropic unveils Project Glasswing for AI-native cyber defense',
                 body:
-                  'On April 7, 2026, Anthropic introduced Project Glasswing to help defenders secure critical software with early access to a frontier model built for defensive security work.',
+                  'On April 7, 2026, Anthropic launched Project Glasswing, giving defenders early access to Claude Mythos Preview to find and patch vulnerabilities across critical infrastructure, backed by cross-industry partners and large-scale security credits.',
                 tone: 'cyan',
                 link: {
                   label: 'Read more',
@@ -175,9 +195,9 @@ export const newsletter: NewsletterIssue = {
                 },
               },
               {
-                title: '📱 Google brings Gemma 4 agent skills to the edge',
+                title: '📱 Google pushes Gemma 4 agent skills fully on-device',
                 body:
-                  'On April 2, 2026, Google said Gemma 4 now supports on-device agent skills, offline code generation, and a new LiteRT-LM CLI for laptops, phones, and edge devices.',
+                  'On April 2, 2026, Google introduced Gemma 4 edge capabilities enabling multi-step agent actions, offline code generation, and multimodal processing across mobile, desktop, and IoT with LiteRT-LM and support for 140+ languages.',
                 tone: 'amber',
                 link: {
                   label: 'Read more',
@@ -185,13 +205,23 @@ export const newsletter: NewsletterIssue = {
                 },
               },
               {
-                title: '⚙️ Microsoft Foundry moves agent tooling into production',
+                title: '⚙️ Microsoft Foundry reaches enterprise readiness for agents',
                 body:
-                  'On April 9, 2026, Microsoft said Foundry Agent Service reached GA and its Python, JavaScript, Java, and .NET SDKs moved onto stable 2.0 releases for production agent workloads.',
+                  'On April 9, 2026, Microsoft highlighted GA momentum for Foundry Agent Service, GPT-5.4 integration, and stable 2.0 SDKs across Python, JavaScript, Java, and .NET, moving agent operations from pilots into governed production.',
                 tone: 'emerald',
                 link: {
                   label: 'Read more',
                   href: 'https://devblogs.microsoft.com/foundry/whats-new-in-microsoft-foundry-mar-2026',
+                },
+              },
+              {
+                title: '🚀 Tiny Model, Giant Upset: Gemma 4 beats 400B-class rivals',
+                body:
+                  'Google’s 31B-parameter Gemma 4 outperformed far larger models on math, science, and coding benchmarks, showing frontier performance no longer requires frontier size. With Apache 2.0 licensing and consumer-hardware viability, high-end local AI is becoming practical for real teams.',
+                tone: 'emerald',
+                link: {
+                  label: 'Read more',
+                  href: 'https://tech-insider.org/google-gemma-4-open-model-benchmarks-2026/',
                 },
               },
             ],
@@ -357,7 +387,7 @@ export const newsletter: NewsletterIssue = {
               tone: 'emerald',
             },
             {
-              value: '60–70%',
+              value: '60-70%',
               label: 'Cost efficiency',
               sub: 'Reduced analyst/SME effort',
               tone: 'cyan',
