@@ -130,9 +130,9 @@ export const newsletter: NewsletterIssue = {
       icon: 'none',
       hero: {
         badge: { label: 'AI Engineer Watchlist', tone: 'cyan' },
-        title: 'The AI updates engineers should watch in April 2026',
+        title: 'April 2026 AI updates every engineer should watch',
         subtitle:
-          'Fresh model, agent, and platform updates from OpenAI, Anthropic, Google, and Microsoft published between March 5 and April 9, 2026.',
+          'A concise roundup of model, agent, and platform releases from OpenAI, Anthropic, Google, and Microsoft from March to April, 2026.',
       },
       columns: {
         left: [

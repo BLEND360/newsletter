@@ -78,7 +78,7 @@ function HeroSection({ page, mode }: { page: NewsletterPageContent; mode: 'scree
       <BadgePill tone={page.hero.badge.tone} label={page.hero.badge.label} />
       <h2
         className={`mt-4 mb-4 text-2xl leading-tight text-slate-950 sm:text-3xl ${
-          mode === 'screen' ? (isAiReport ? 'max-w-[24ch]' : 'lg:whitespace-nowrap') : ''
+          mode === 'screen' ? 'lg:whitespace-nowrap' : ''
         }`}
       >
         {page.hero.title}
